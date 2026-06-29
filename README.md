@@ -1,35 +1,30 @@
 # WorkShelf
 
-WorkShelf is a modern MERN-stack e-commerce platform combining:
+Industry-level MERN Stack e-commerce platform for Office & Business supplies and Library products.
 
-- Office & Business Marketplace
-- Library & Book Marketplace
+## Features
 
-## Inspiration
+- Authentication
+- Product Catalog
+- Search & Filters
+- Shopping Cart
+- Checkout
+- Wishlist
+- Admin Dashboard
+- Product Management
+- Order Management
+- Analytics
 
-- Barnes & Noble
-- Amazon Business
-- Zatiq Easy
+## Tech Stack
 
-## Current Status
-
-Phase 1: Product Research & Planning
-
-### Completed
-
-- Product vision
-- Homepage research
-- Navigation planning
-- Category planning
-- Product structure planning
-- Checkout flow research
-
-## Tech Stack (Planned)
-
+Frontend:
 - React
 - TypeScript
-- Node.js
-- Express.js
-- MongoDB
-- Redux Toolkit
+- Vite
 - Tailwind CSS
+
+Backend:
+- Node.js
+- Express
+- MongoDB
+- Mongoose
