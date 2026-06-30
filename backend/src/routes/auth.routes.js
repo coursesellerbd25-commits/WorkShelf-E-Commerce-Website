@@ -1,6 +1,6 @@
 import express from 'express';
-import { protect } from '../middleware/auth.middleware.js';
 import { register, login } from '../controllers/auth.controller.js';
+import { protect, authorize } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -16,5 +16,29 @@ router.get('/me', protect, (req, res) => {
     user: req.user,
   });
 });
+
+router.get(
+  '/admin',
+  protect,
+  authorize('admin'),
+  (req, res) => {
+    res.status(200).json({
+      success: true,
+      message: 'Welcome Admin!',
+    });
+  },
+);
+
+router.get(
+  '/customer',
+  protect,
+  authorize('customer'),
+  (req, res) => {
+    res.status(200).json({
+      success: true,
+      message: 'Welcome Customer!',
+    });
+  },
+);
 
 export default router;
