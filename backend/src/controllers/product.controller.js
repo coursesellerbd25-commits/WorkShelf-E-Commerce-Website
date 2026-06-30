@@ -149,3 +149,25 @@ export const deleteProduct = async (req, res) => {
     });
   }
 };
+
+export const getCategories = async (req, res) => {
+  try {
+    const categories = [
+      'Books',
+      'Office',
+      'Stationery',
+      'Electronics',
+    ];
+
+    res.status(200).json({
+      success: true,
+      count: categories.length,
+      categories,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
