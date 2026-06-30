@@ -3,7 +3,7 @@ import Product from '../models/product.model.js';
 export const createProduct = async (req, res) => {
   try {
     // 1. Receive request data
-    const { name, price, stock, images, category, description } = req.body;
+    const { name, price,  rating, stock, images, category, description } = req.body;
 
     // 2. Validate required fields
     if (!name || !price || !category || !description) {
@@ -17,6 +17,7 @@ export const createProduct = async (req, res) => {
     const product = await Product.create({
       name,
       price,
+      rating,
       stock,
       images,
       category,
@@ -46,17 +47,55 @@ export const getProducts = async (req, res) => {
     // Calculate how many products to skip
     const skip = (page - 1) * limit;
 
-    // Search keyword
-    const search = req.query.search || '';
+    const {
+      search,
+      category,
+      minPrice,
+      maxPrice,
+      rating,
+      inStock,
+    } = req.query;
 
-    // Search filter
-    const filter = search
-      ? {
-          $text: {
-          $search: search,
-        },
+    const filter = {};
+
+    // Search
+    if (search) {
+      filter.$text = {
+        $search: search,
+      };
+    }
+
+    // Category
+    if (category) {
+      filter.category = category;
+    }
+
+    // Price
+    if (minPrice || maxPrice) {
+      filter.price = {};
+
+      if (minPrice) {
+        filter.price.$gte = Number(minPrice);
       }
-    : {};
+
+      if (maxPrice) {
+        filter.price.$lte = Number(maxPrice);
+      }
+    }
+
+    // Rating
+    if (rating) {
+      filter.rating = {
+        $gte: Number(rating),
+      };
+    }
+
+    // Stock
+    if (inStock === 'true') {
+      filter.stock = {
+        $gt: 0,
+      };
+    }
 
     // Total products
     const totalProducts = await Product.countDocuments(filter);
