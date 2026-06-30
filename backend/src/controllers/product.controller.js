@@ -46,11 +46,23 @@ export const getProducts = async (req, res) => {
     // Calculate how many products to skip
     const skip = (page - 1) * limit;
 
-    // Get total number of products
-    const totalProducts = await Product.countDocuments();
+    // Search keyword
+    const search = req.query.search || '';
 
-    // Get paginated products
-    const products = await Product.find()
+    // Search filter
+    const filter = search
+      ? {
+          $text: {
+          $search: search,
+        },
+      }
+    : {};
+
+    // Total products
+    const totalProducts = await Product.countDocuments(filter);
+
+    // Products
+    const products = await Product.find(filter)
       .skip(skip)
       .limit(limit);
 
