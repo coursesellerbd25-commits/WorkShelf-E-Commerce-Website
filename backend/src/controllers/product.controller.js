@@ -39,12 +39,28 @@ export const createProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   try {
-    // Get all products
-    const products = await Product.find();
+    // Get page and limit from query parameters
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    // Calculate how many products to skip
+    const skip = (page - 1) * limit;
+
+    // Get total number of products
+    const totalProducts = await Product.countDocuments();
+
+    // Get paginated products
+    const products = await Product.find()
+      .skip(skip)
+      .limit(limit);
 
     // Return response
     res.status(200).json({
       success: true,
+      page,
+      limit,
+      totalProducts,
+      totalPages: Math.ceil(totalProducts / limit),
       count: products.length,
       products,
     });
