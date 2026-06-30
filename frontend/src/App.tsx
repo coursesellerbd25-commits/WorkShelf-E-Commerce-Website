@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import CategorySection from './components/CategorySection';
 import FeaturedProducts from './components/FeaturedProducts';
 import BestSellers from './components/BestSellers';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <CategorySection />
       <FeaturedProducts />
       <BestSellers />
+      <Footer />
     </>
   );
 }
