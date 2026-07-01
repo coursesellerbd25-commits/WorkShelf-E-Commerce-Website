@@ -66,12 +66,12 @@ const Navbar = () => {
 
         {/* Right Menu */}
         <div className="ml-12 hidden lg:flex items-center gap-8">
-          <a
-            href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
+          <Link
+            to="/wishlist"
+            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
           >
             Wishlist
-          </a>
+          </Link>
 
           <Link 
             to="/cart" 
@@ -99,7 +99,7 @@ const Navbar = () => {
 
                 <hr className="my-3" />
 
-                <a className="py-3">Wishlist</a>
+                <Link to="/wishlist" className="py-3" onClick={() => setMenuOpen(false)}> Wishlist </Link>
                 <Link to="/cart" className="py-3">Cart</Link>
                 <a className="py-3">Profile</a>
               </nav>
