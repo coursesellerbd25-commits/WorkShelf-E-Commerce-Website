@@ -73,12 +73,11 @@ const Navbar = () => {
             Wishlist
           </a>
 
-          <a
-            href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
-          >
-            Cart
-          </a>
+          <Link 
+            to="/cart" 
+            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600" > 
+              Cart 
+          </Link>
 
           <a
             href="#"
@@ -94,14 +93,14 @@ const Navbar = () => {
           menuOpen && (
             <div className="border-t bg-white lg:hidden">
               <nav className="flex flex-col p-4">
-                <a className="py-3">Books</a>
+                <Link to="/products" className="py-3">Books</Link>
                 <a className="py-3">Office</a>
                 <a className="py-3">Business</a>
 
                 <hr className="my-3" />
 
                 <a className="py-3">Wishlist</a>
-                <a className="py-3">Cart</a>
+                <Link to="/cart" className="py-3">Cart</Link>
                 <a className="py-3">Profile</a>
               </nav>
             </div>
