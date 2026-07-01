@@ -79,12 +79,12 @@ const Navbar = () => {
               Cart 
           </Link>
 
-          <a
-            href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
+          <Link
+            to="/addresses"
+            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
           >
             Profile
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -101,10 +101,11 @@ const Navbar = () => {
 
                 <Link to="/wishlist" className="py-3" onClick={() => setMenuOpen(false)}> Wishlist </Link>
                 <Link to="/cart" className="py-3">Cart</Link>
-                <a className="py-3">Profile</a>
+                <Link to="/addresses" className="py-3" onClick={() => setMenuOpen(false)}> Profile </Link>
               </nav>
             </div>
           )}
+
           {/* Mobile Search */}
           <div className="border-t border-gray-200 px-4 py-3 lg:hidden">
             <div className="relative">
