@@ -1,6 +1,8 @@
 import { FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 type ProductCardProps = {
+  id: number;
   name: string;
   price: number;
   rating: number;
@@ -8,12 +10,14 @@ type ProductCardProps = {
 };
 
 const ProductCard = ({
+  id,
   name,
   price,
   rating,
   image,
 }: ProductCardProps) => {
   return (
+    <Link to={`/products/${id}`}>
     <div className="overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       {/* Product Image */}
       <div className="flex h-52 items-center justify-center bg-slate-200">
@@ -48,6 +52,7 @@ const ProductCard = ({
         </button>
       </div>
     </div>
+    </Link>
   );
 };
 

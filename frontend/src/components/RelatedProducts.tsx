@@ -19,20 +19,14 @@ const products = [
     price: 129.99,
     rating: 4.8,
   },
-  {
-    id: 4,
-    name: 'Wireless Keyboard',
-    price: 59.99,
-    rating: 4.8,
-  },
 ];
 
-const FeaturedProducts = () => {
+const RelatedProducts = () => {
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-slate-900">
-          Featured Products
+        <h2 className="text-3xl font-bold text-slate-900">
+            Related Products
         </h2>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -51,4 +45,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts;
+export default RelatedProducts;
