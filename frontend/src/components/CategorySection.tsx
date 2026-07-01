@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const categories = [
   'Books',
   'Office',
@@ -18,32 +20,50 @@ const CategorySection = () => {
 
         {/* Category Cards */}
         <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:max-w-3xl">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className="
-                h-36
-                rounded-2xl
-                bg-white
-                shadow-sm
-                border border-gray-100
+          {categories.map((category) => {
+            const cardClasses = `
+              flex
+              h-36
+              items-center
+              justify-center
+              rounded-2xl
+              border
+              border-gray-100
+              bg-white
+              text-xl
+              font-semibold
+              text-slate-900
+              shadow-sm
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:bg-blue-600
+              hover:text-white
+              hover:shadow-xl
+            `;
 
-                text-xl
-                font-semibold
-                text-slate-900
+            if (category === 'Books') {
+              return (
+                <Link
+                  key={category}
+                  to="/products"
+                  className={cardClasses}
+                >
+                  {category}
+                </Link>
+              );
+            }
 
-                transition-all
-                duration-300
-
-                hover:bg-blue-600
-                hover:text-white
-                hover:shadow-xl
-                hover:-translate-y-1
-              "
-            >
-              {category}
-            </button>
-          ))}
+            return (
+              <button
+                key={category}
+                type="button"
+                className={cardClasses}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

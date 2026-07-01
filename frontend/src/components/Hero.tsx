@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Hero = () => {
   return (
     <section className="bg-slate-50">
@@ -20,9 +22,12 @@ const Hero = () => {
               Shop Now
             </button>
 
-            <button className="h-11 rounded-lg border border-blue-600 px-8 text-sm font-semibold text-blue-600 transition hover:bg-blue-50">
+            <Link
+              to="/products"
+              className="inline-flex h-11 items-center justify-center rounded-lg border border-blue-600 px-8 text-sm font-semibold text-blue-600 transition hover:bg-blue-50"
+            >
               Explore Books
-            </button>
+            </Link>
           </div>
 
           <p className="mt-6 text-xs text-slate-400 md:mt-10 md:text-sm">

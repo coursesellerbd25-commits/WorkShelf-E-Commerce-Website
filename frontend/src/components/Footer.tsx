@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white">
@@ -62,12 +64,12 @@ const Footer = () => {
 
             <ul className="mt-8 space-y-4 text-slate-400">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/products"
                   className="transition-all duration-200 hover:translate-x-1 hover:text-white"
                 >
                   Books
-                </a>
+                </Link>
               </li>
 
               <li>

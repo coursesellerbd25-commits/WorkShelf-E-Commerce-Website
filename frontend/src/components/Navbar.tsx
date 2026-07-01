@@ -4,6 +4,7 @@ import {
   FiX,
 } from 'react-icons/fi';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,12 +42,12 @@ const Navbar = () => {
 
         {/* Categories */}
         <nav className="hidden lg:flex items-center gap-10">
-          <a
-            href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
+          <Link
+            to="/products"
+            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
           >
-            Books
-          </a>
+          Books
+          </Link>
 
           <a
             href="#"
