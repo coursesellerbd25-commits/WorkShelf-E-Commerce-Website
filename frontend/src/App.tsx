@@ -3,13 +3,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductListingPage from './pages/ProductListingPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+
 import CartPage from './pages/CartPage';
 import WishlistPage from './pages/WishlistPage';
+
 import AddressPage from './pages/AddressPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
+
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AdminProductsPage from './pages/AdminProductsPage';
+import AdminOrdersPage from './pages/AdminOrdersPage';
 
 function App() {
   return (
@@ -18,13 +22,17 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />}/>
+
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
+
         <Route path="/addresses" element={<AddressPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-success" element={<OrderSuccessPage />} />
+        
         <Route path="/admin" element={<AdminDashboardPage />} />
         <Route path="/admin/products" element={<AdminProductsPage />} />
+        <Route path="/admin/orders" element={<AdminOrdersPage />} />
       </Routes>
     </BrowserRouter>
   );
