@@ -34,9 +34,12 @@ const OrderSummary = () => {
         <span>$97.47</span>
       </div>
 
-      <button className="mt-8 w-full rounded-xl bg-blue-600 py-4 text-lg font-semibold text-white transition hover:bg-blue-700">
+      <Link
+        to="/checkout"
+        className="mt-8 block w-full rounded-xl bg-blue-600 py-4 text-center text-lg font-semibold text-white transition hover:bg-blue-700"
+      >
         Proceed to Checkout
-      </button>
+      </Link>
 
       <Link
         to="/products"
