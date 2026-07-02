@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const OrderSummary2 = () => {
   return (
     <section className="mt-12">
@@ -34,9 +36,12 @@ const OrderSummary2 = () => {
 
         </div>
 
-        <button className="mt-8 w-full rounded-xl bg-blue-600 py-4 text-lg font-semibold text-white transition hover:bg-blue-700">
-          Place Order
-        </button>
+        <Link
+            to="/order-success"
+            className="mt-8 block w-full rounded-xl bg-blue-600 py-4 text-center text-lg font-semibold text-white transition hover:bg-blue-700"
+        >
+            Place Order
+        </Link>
 
         <p className="mt-6 text-center text-sm text-slate-500">
           🔒 Secure checkout powered by WorkShelf
