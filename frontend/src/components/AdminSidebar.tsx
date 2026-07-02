@@ -1,6 +1,12 @@
 import { NavLink } from 'react-router-dom';
 
 const AdminSidebar = () => {
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `block rounded-xl px-6 py-4 text-2xl font-medium transition ${
+      isActive
+        ? 'bg-blue-50 text-blue-600'
+        : 'text-slate-900 hover:bg-slate-100'
+    }`;
   return (
     <aside
         className="
@@ -22,48 +28,42 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin"
           end
-          className={({ isActive }) =>
-            `block rounded-xl px-6 py-4 text-2xl font-medium transition ${
-              isActive
-                ? 'bg-blue-50 text-blue-600'
-                : 'text-slate-900 hover:bg-slate-100'
-            }`
-          }
+          className={navLinkClass}
         >
           Dashboard
         </NavLink>
 
         <NavLink
           to="/admin/products"
-          className="block rounded-xl px-6 py-4 text-2xl text-slate-900 hover:bg-slate-100"
+          className={navLinkClass}
         >
           Products
         </NavLink>
 
         <NavLink
           to="/admin/orders"
-          className="block rounded-xl px-6 py-4 text-2xl text-slate-900 hover:bg-slate-100"
+          className={navLinkClass}
         >
           Orders
         </NavLink>
 
         <NavLink
           to="/admin/customers"
-          className="block rounded-xl px-6 py-4 text-2xl text-slate-900 hover:bg-slate-100"
+          className={navLinkClass}
         >
           Customers
         </NavLink>
 
         <NavLink
           to="/admin/analytics"
-          className="block rounded-xl px-6 py-4 text-2xl text-slate-900 hover:bg-slate-100"
+          className={navLinkClass}
         >
           Analytics
         </NavLink>
 
         <NavLink
           to="/admin/settings"
-          className="block rounded-xl px-6 py-4 text-2xl text-slate-900 hover:bg-slate-100"
+          className={navLinkClass}
         >
           Settings
         </NavLink>
