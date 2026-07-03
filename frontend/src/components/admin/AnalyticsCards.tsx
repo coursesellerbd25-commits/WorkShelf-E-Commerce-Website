@@ -1,57 +1,49 @@
-import {
-  FiShoppingBag,
-  FiUsers,
-  FiDollarSign,
-} from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
-const stats = [
+const cards = [
   {
     title: 'Total Orders',
-    value: '245',
-    icon: <FiShoppingBag size={28} />,
-    color: 'bg-blue-100 text-blue-600',
-  },
-  {
-    title: 'Total Users',
-    value: '98',
-    icon: <FiUsers size={28} />,
-    color: 'bg-green-100 text-green-600',
+    value: '1,248',
+    link: '/admin/orders',
   },
   {
     title: 'Revenue',
-    value: '$12,450',
-    icon: <FiDollarSign size={28} />,
-    color: 'bg-yellow-100 text-yellow-600',
+    value: '$24,580',
+    link: '/admin/analytics',
+  },
+  {
+    title: 'Products',
+    value: '320',
+    link: '/admin/products',
+  },
+  {
+    title: 'Users',
+    value: '5,412',
+    link: '/admin/customers',
   },
 ];
 
 const AnalyticsCards = () => {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-      {stats.map((stat) => (
-        <div
-          key={stat.title}
-          className="rounded-2xl bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+    <div className="mt-10 grid grid-cols-2 gap-5">
+
+      {cards.map((card) => (
+        <Link
+          key={card.title}
+          to={card.link}
+          className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-slate-500">
-                {stat.title}
-              </p>
+          <p className="text-lg text-slate-500">
+            {card.title}
+          </p>
 
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
-                {stat.value}
-              </h2>
-            </div>
+          <h2 className="mt-8 text-5xl font-bold">
+            {card.value}
+          </h2>
 
-            <div
-              className={`rounded-xl p-4 ${stat.color}`}
-            >
-              {stat.icon}
-            </div>
-          </div>
-        </div>
+        </Link>
       ))}
+
     </div>
   );
 };

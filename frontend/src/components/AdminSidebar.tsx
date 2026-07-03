@@ -1,6 +1,14 @@
 import { NavLink } from 'react-router-dom';
 
-const AdminSidebar = () => {
+type Props = {
+  isOpen: boolean;
+  closeSidebar: () => void;
+};
+
+const AdminSidebar = ({
+  isOpen,
+  closeSidebar,
+}: Props) => {
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `block rounded-xl px-6 py-4 text-2xl font-medium transition ${
       isActive
@@ -9,25 +17,41 @@ const AdminSidebar = () => {
     }`;
   return (
     <aside
-        className="
-            min-h-screen
-            w-full
-            bg-white
-            px-8
-            py-10
-            shadow-md
-            lg:w-72
-        "
+      className={`
+        fixed
+        top-20
+        left-0
+        z-20
+        flex
+        h-[calc(100vh-80px)]
+        w-72
+        flex-col
+        bg-white
+        px-8
+        py-10
+        shadow-lg
+        transition-transform
+        duration-300
+
+      ${
+        isOpen
+          ? 'translate-x-0'
+          : '-translate-x-full'
+      }
+        lg:translate-x-0
+      `}
     >
+
       {/* Logo */}
       <h1 className="mb-12 text-center text-4xl font-bold text-slate-900">
         WorkShelf Admin
       </h1>
 
-      <nav className="space-y-3">
+      <nav className="flex-1 space-y-3 overflow-y-auto">
         <NavLink
           to="/admin"
           end
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Dashboard
@@ -35,6 +59,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/products"
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Products
@@ -42,6 +67,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/orders"
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Orders
@@ -49,6 +75,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/customers"
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Customers
@@ -56,6 +83,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/analytics"
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Analytics
@@ -63,17 +91,18 @@ const AdminSidebar = () => {
 
         <NavLink
           to="/admin/settings"
+          onClick={closeSidebar}
           className={navLinkClass}
         >
           Settings
         </NavLink>
+      </nav>
 
         <button
-          className="mt-8 px-6 py-4 text-2xl text-red-500 transition hover:text-red-600"
+          className="mt-6 w-full rounded-xl border border-red-200 py-4 text-xl font-medium text-red-500 transition hover:bg-red-600"
         >
           Logout
         </button>
-      </nav>
     </aside>
   );
 };

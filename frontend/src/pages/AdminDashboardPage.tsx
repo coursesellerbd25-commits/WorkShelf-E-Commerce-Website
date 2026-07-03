@@ -1,24 +1,23 @@
-import AdminSidebar from '../components/AdminSidebar';
 import AnalyticsCards from '../components/admin/AnalyticsCards';
+import RecentOrders from '../components/admin/RecentOrders';
+import QuickActions from '../components/admin/QuickActions';
 
-const AdminDashboard = () => {
-  return (
-    <div className="min-h-screen bg-slate-100 lg:flex">
-      <AdminSidebar />
-
-      <main className="flex-1 bg-slate-100 p-6 md:p-8">
-        <h1 className="mb-8 text-4xl font-bold">
-          Dashboard
+const AdminDashboardPage = () => {
+   return (
+    <>
+        <h1 className="text-5xl font-bold">
+          Welcome Back, Admin
         </h1>
 
-        <AnalyticsCards />
-
-        <p className="mt-4 text-lg text-slate-500">
-          Welcome back, Admin.
+        <p className="mt-2 text-xl text-slate-500">
+          Here's what's happening today.
         </p>
-      </main>
-    </div>
+
+        <AnalyticsCards />
+        <RecentOrders />
+        <QuickActions />
+    </>
   );
 };
 
-export default AdminDashboard;
+export default AdminDashboardPage;
