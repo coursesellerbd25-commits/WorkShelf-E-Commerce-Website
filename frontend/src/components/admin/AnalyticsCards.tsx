@@ -25,25 +25,22 @@ const cards = [
 
 const AnalyticsCards = () => {
   return (
-    <div className="mt-10 grid grid-cols-2 gap-5">
-
+    <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-10 lg:gap-5">
       {cards.map((card) => (
         <Link
           key={card.title}
           to={card.link}
-          className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          className="rounded-2xl border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg lg:p-6"
         >
-          <p className="text-lg text-slate-500">
+          <p className="text-sm text-slate-500 sm:text-base lg:text-lg">
             {card.title}
           </p>
 
-          <h2 className="mt-8 text-5xl font-bold">
+          <h2 className="mt-5 text-3xl font-bold sm:text-4xl lg:mt-8 lg:text-5xl">
             {card.value}
           </h2>
-
         </Link>
       ))}
-
     </div>
   );
 };
