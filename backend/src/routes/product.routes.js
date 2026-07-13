@@ -17,6 +17,9 @@ router.get('/', getProducts);
 router.get('/categories', getCategories);
 router.get('/:id', getProductById);
 
+// Upload Image
+router.post('/', upload.single('image'), createProduct);
+
 // Admin routes
 router.post('/', protect, authorize('admin'), createProduct);
 router.put('/:id', protect, authorize('admin'), updateProduct);
