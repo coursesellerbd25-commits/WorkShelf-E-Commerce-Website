@@ -5,8 +5,10 @@ import ProductFilters from '../components/ProductFilters';
 import ProductCardSkeleton from '../components/ProductCardSkeleton';
 import ErrorMessage from '../components/ErrorMessage';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getProducts } from '../services/productService';
+import { useEffect } from 'react';
+import { socket } from '../lib/socket';
 
 export type Product = {
   _id: string;
@@ -20,14 +22,27 @@ export type Product = {
 };
 
 const ProductListingPage = () => {
+  const queryClient = useQueryClient();
   const {
-  data: products = [],
-  isLoading,
-  error,
-} = useQuery<Product[]>({
-  queryKey: ['products'],
-  queryFn: getProducts,
-});
+    data: products = [],
+    isLoading,
+    error,
+  } = useQuery<Product[]>({
+    queryKey: ['products'],
+    queryFn: getProducts,
+  });
+
+  useEffect(() => {
+    socket.on('inventoryUpdated', () => {
+      queryClient.invalidateQueries({
+        queryKey: ['products'],
+      });
+    });
+
+    return () => {
+      socket.off('inventoryUpdated');
+    };
+  }, [queryClient]);
 
   if (error) {
     return (
@@ -36,6 +51,7 @@ const ProductListingPage = () => {
       />
     );
   }
+
   return (
     <>
       <Navbar />

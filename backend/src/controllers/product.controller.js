@@ -1,6 +1,7 @@
 import Product from '../models/product.model.js';
 import cloudinary from '../config/cloudinary.js';
 import fs from 'fs';
+import { io } from '../../server.js';
 
 export const createProduct = async (req, res) => {
   try {
@@ -215,6 +216,12 @@ export const updateProduct = async (req, res) => {
         message: 'Product not found.',
       });
     }
+
+    // Notify all connected clients
+    io.emit('inventoryUpdated', {
+      productId: product._id,
+      stock: product.stock,
+    });
 
     // Return updated product
     res.status(200).json({
