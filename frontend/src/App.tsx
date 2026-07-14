@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { socket } from './lib/socket';
 
 import HomePage from './pages/HomePage';
 import ProductListingPage from './pages/ProductListingPage';
@@ -19,6 +21,16 @@ import AdminUsersPage from './pages/AdminUsersPage';
 import AdminAddProductPage from './pages/AdminAddProductPage';
 
 function App() {
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected:', socket.id);
+    });
+
+    return () => {
+      socket.off('connect');
+    };
+  }, []);
+  
   return (
       <Routes>
         <Route path="/" element={<HomePage />} />

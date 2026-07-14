@@ -21,7 +21,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/v1/admin', adminRoutes);
 
 // Handle 404 Routes
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found',
