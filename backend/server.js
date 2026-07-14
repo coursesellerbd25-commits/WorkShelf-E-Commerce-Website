@@ -22,6 +22,11 @@ export const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log(`User connected: ${socket.id}`);
 
+  socket.emit(
+      'notification',
+      '🎉 Welcome to WorkShelf!'
+    );
+
   socket.on('disconnect', () => {
     console.log(`User disconnected: ${socket.id}`);
   });

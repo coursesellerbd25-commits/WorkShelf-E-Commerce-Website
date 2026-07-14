@@ -1,6 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import { socket } from './lib/socket';
 
 import HomePage from './pages/HomePage';
 import ProductListingPage from './pages/ProductListingPage';
@@ -20,6 +18,12 @@ import AdminOrdersPage from './pages/AdminOrdersPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import AdminAddProductPage from './pages/AdminAddProductPage';
 
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+
+import { socket } from './lib/socket';
+import NotificationToast from './components/NotificationToast';
+
 function App() {
   useEffect(() => {
     socket.on('connect', () => {
@@ -28,6 +32,18 @@ function App() {
 
     return () => {
       socket.off('connect');
+    };
+  }, []);
+
+  useEffect(() => {
+    socket.on('notification', (message) => {
+      toast.custom(() => (
+        <NotificationToast message={message} />
+      ));
+    });
+
+    return () => {
+      socket.off('notification');
     };
   }, []);
   
