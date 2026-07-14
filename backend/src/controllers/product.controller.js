@@ -1,11 +1,19 @@
 import Product from '../models/product.model.js';
+import cloudinary from '../config/cloudinary.js';
+import fs from 'fs';
 
 export const createProduct = async (req, res) => {
   try {
-    // 1. Receive request data
-    const { name, price,  rating, stock, images, category, description } = req.body;
+    const {
+      name,
+      price,
+      rating,
+      stock,
+      category,
+      description,
+    } = req.body;
 
-    // 2. Validate required fields
+    // Validate required fields
     if (!name || !price || !category || !description) {
       return res.status(400).json({
         success: false,
@@ -13,24 +21,61 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // 3. Create product
+    // Validate image upload
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please upload a product image.',
+      });
+    }
+
+    // Upload image to Cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'workshelf/products',
+
+      transformation: [
+        {
+          width: 800,
+          height: 800,
+          crop: 'limit',
+        },
+        {
+          quality: 'auto',
+        },
+        {
+          fetch_format: 'auto',
+        },
+      ],
+    });
+
+    // Delete local uploaded file
+    fs.unlinkSync(req.file.path);
+
+    // Create product
     const product = await Product.create({
       name,
       price,
       rating,
       stock,
-      images,
       category,
       description,
+
+      image: result.secure_url,
     });
 
-    // 4. Return success response
     res.status(201).json({
       success: true,
       message: 'Product created successfully.',
       product,
     });
   } catch (error) {
+    // Remove uploaded file if something fails
+    if (req.file) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch {}
+    }
+
     res.status(500).json({
       success: false,
       message: error.message,

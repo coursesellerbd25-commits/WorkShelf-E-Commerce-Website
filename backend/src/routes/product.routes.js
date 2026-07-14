@@ -7,6 +7,7 @@ import {
   deleteProduct,
   getCategories,
 } from '../controllers/product.controller.js';
+import upload from '../middleware/upload.middleware.js';
 
 import { protect, authorize } from '../middleware/auth.middleware.js';
 
@@ -17,11 +18,8 @@ router.get('/', getProducts);
 router.get('/categories', getCategories);
 router.get('/:id', getProductById);
 
-// Upload Image
-router.post('/', upload.single('image'), createProduct);
-
 // Admin routes
-router.post('/', protect, authorize('admin'), createProduct);
+router.post('/', protect, authorize('admin'), upload.single('image'), createProduct)
 router.put('/:id', protect, authorize('admin'), updateProduct);
 router.delete('/:id', protect, authorize('admin'), deleteProduct);
 
