@@ -20,7 +20,6 @@ import AdminAddProductPage from './pages/AdminAddProductPage';
 
 function App() {
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductListingPage />} />
@@ -42,7 +41,6 @@ function App() {
           <Route path="/admin/products/new" element={<AdminAddProductPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
   );
 }
 

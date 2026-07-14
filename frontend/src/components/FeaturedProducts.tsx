@@ -1,4 +1,6 @@
 import ProductCard from './ProductCard';
+import ProductCardSkeleton from '../components/ProductCardSkeleton';
+import { useEffect, useState } from 'react';
 
 const products = [
   {
@@ -28,6 +30,14 @@ const products = [
 ];
 
 const FeaturedProducts = () => {
+  const [loading, setLoading] = useState(true);
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <section className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -36,13 +46,17 @@ const FeaturedProducts = () => {
         </h2>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-              rating={product.rating}
+          {loading
+            ? Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))
+            : products.map((product) => (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                rating={product.rating}
             />
           ))}
         </div>

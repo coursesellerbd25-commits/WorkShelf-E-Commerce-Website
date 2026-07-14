@@ -1,18 +1,22 @@
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-type Product = {
+type ProductCardProps = {
   product: {
-    id: number;
+    _id: string;
     name: string;
     price: number;
     rating: number;
+    stock: number;
+    category: string;
+    description: string;
+    images?: string[];
   };
 };
 
-const ProductCard = ({ product }: Product) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <Link to={`/products/${product.id}`}>
+    <Link to={`/products/${product._id}`}>
     <div className="overflow-hidden rounded-2xl bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
       {/* Image */}
       <div className="flex h-44 items-center justify-center bg-slate-200 text-sm text-slate-500">

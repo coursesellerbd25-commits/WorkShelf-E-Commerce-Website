@@ -50,7 +50,11 @@ const AdminAddProductPage = () => {
 
       } catch (error) {
         toast.dismiss(loadingToast);
-        toast.error(error instanceof Error ? error.message : 'Something went wrong');
+
+        if (!navigator.onLine) {
+          toast.error('No internet connection.');
+        } else {
+        toast.error(error instanceof Error ? error.message : 'Something went wrong');}
       }
     };
 

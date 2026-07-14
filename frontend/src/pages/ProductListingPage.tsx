@@ -2,47 +2,40 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductCard2 from '../components/ProductCard2';
 import ProductFilters from '../components/ProductFilters';
+import ProductCardSkeleton from '../components/ProductCardSkeleton';
+import ErrorMessage from '../components/ErrorMessage';
 
-const products = [
-  {
-    id: 1,
-    name: 'Atomic Habits',
-    price: 49.99,
-    rating: 4.8,
-  },
-  {
-    id: 2,
-    name: 'Clean Code',
-    price: 39.99,
-    rating: 4.8,
-  },
-  {
-    id: 3,
-    name: 'Office Chair',
-    price: 129.99,
-    rating: 4.8,
-  },
-  {
-    id: 4,
-    name: 'Wireless Keyboard',
-    price: 59.99,
-    rating: 4.8,
-  },
-  {
-    id: 5,
-    name: 'Business Planner',
-    price: 19.99,
-    rating: 4.8,
-  },
-  {
-    id: 6,
-    name: 'Desk Lamp',
-    price: 34.99,
-    rating: 4.8,
-  },
-];
+import { useQuery } from '@tanstack/react-query';
+import { getProducts } from '../services/productService';
+
+export type Product = {
+  _id: string;
+  name: string;
+  price: number;
+  rating: number;
+  stock: number;
+  category: string;
+  description: string;
+  images?: string[];
+};
 
 const ProductListingPage = () => {
+  const {
+  data: products = [],
+  isLoading,
+  error,
+} = useQuery<Product[]>({
+  queryKey: ['products'],
+  queryFn: getProducts,
+});
+
+  if (error) {
+    return (
+      <ErrorMessage
+        message={(error as Error).message}
+      />
+    );
+  }
   return (
     <>
       <Navbar />
@@ -63,7 +56,7 @@ const ProductListingPage = () => {
             </h1>
 
             <p className="mt-1 text-sm text-slate-500">
-              245 Products
+              {products.length} Products
             </p>
           </div>
 
@@ -72,12 +65,16 @@ const ProductListingPage = () => {
 
           {/* Product Grid */}
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard2
-                key={product.id}
-                product={product}
-              />
-            ))}
+            {isLoading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))
+              : products.map((product) => (
+                <ProductCard2
+                  key={product._id}
+                  product={product}
+                />
+              ))}
           </div>
         </div>
       </main>
