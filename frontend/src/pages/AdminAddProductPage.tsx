@@ -7,6 +7,9 @@ const AdminAddProductPage = () => {
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('Books');
   const [bookCategory, setBookCategory] = useState('Programming');
+  const [author, setAuthor] = useState('');
+  const [publisher, setPublisher] = useState('');
+  const [pages, setPages] = useState('');
   const [stock, setStock] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const handleSubmit = async (
@@ -26,6 +29,9 @@ const AdminAddProductPage = () => {
     formData.append('price', price);
     formData.append('category', category);
     formData.append('bookCategory', bookCategory);
+    formData.append('author', author);
+    formData.append('publisher', publisher);
+    formData.append('pages', pages);
     formData.append('stock', stock);
     formData.append('image', image);
     const loadingToast = toast.loading('Uploading product...');
@@ -158,6 +164,52 @@ const AdminAddProductPage = () => {
               <option>Non-Fiction</option>
             </select>
           </div>
+          )}
+
+          {category === 'Books' && (
+            <>
+              <div>
+                <label className="mb-2 block font-medium">
+                  Author
+                </label>
+
+                <input
+                  type="text"
+                  value={author}
+                  onChange={(e) => setAuthor(e.target.value)}
+                  placeholder="James Clear"
+                  className="w-full rounded-xl border p-3 outline-none focus:border-blue-600"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block font-medium">
+                  Publisher
+                </label>
+
+                <input
+                  type="text"
+                  value={publisher}
+                  onChange={(e) => setPublisher(e.target.value)}
+                  placeholder="Penguin"
+                  className="w-full rounded-xl border p-3 outline-none focus:border-blue-600"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block font-medium">
+                  Pages
+                </label>
+
+                <input
+                  type="number"
+                  value={pages}
+                  onChange={(e) => setPages(e.target.value)}
+                  placeholder="320"
+                  className="w-full rounded-xl border p-3 outline-none focus:border-blue-600"
+                />
+              </div>
+            </>
           )}
 
           {/* Stock */}

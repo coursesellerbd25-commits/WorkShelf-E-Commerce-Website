@@ -47,6 +47,21 @@ const productSchema = new mongoose.Schema(
       default: '',
     },
 
+    author: {
+      type: String,
+      default: '',
+    },
+
+    publisher: {
+      type: String,
+      default: '',
+    },
+
+    pages: {
+      type: Number,
+      default: 0,
+    },
+
     description: {
       type: String,
       required: [true, 'Description is required'],

@@ -12,6 +12,9 @@ export const createProduct = async (req, res) => {
       stock,
       category,
       bookCategory,
+      author,
+      publisher,
+      pages,
       description,
     } = req.body;
 
@@ -61,6 +64,9 @@ export const createProduct = async (req, res) => {
       stock,
       category,
       bookCategory,
+      author,
+      publisher,
+      pages,
       description,
       images: [
         {
