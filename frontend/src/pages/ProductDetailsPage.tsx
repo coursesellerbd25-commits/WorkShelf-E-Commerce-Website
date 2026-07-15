@@ -8,6 +8,7 @@ import ProductGallery from '../components/ProductGallery';
 import ProductInfo from '../components/ProductInfo';
 import RelatedProducts from '../components/RelatedProducts';
 import ProductCard2 from '../components/ProductCard2';
+import RecentlyViewedBooks from '../components/RecentlyViewedBooks';
 
 import { getRecommendations } from '../services/recommendationService';
 import type { Product } from '../types/product';
@@ -67,6 +68,7 @@ const ProductDetailsPage = () => {
               ))}
             </div>
             )}
+            <RecentlyViewedBooks />
         </section>
         )}
       </main>
