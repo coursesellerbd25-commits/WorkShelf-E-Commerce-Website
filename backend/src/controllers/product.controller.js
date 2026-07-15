@@ -308,3 +308,36 @@ export const getCategories = async (req, res) => {
     });
   }
 };
+
+// Recommendation API
+export const getRecommendedProducts = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const currentProduct = await Product.findById(id);
+
+    if (!currentProduct) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found.',
+      });
+    }
+
+    const recommendations = await Product.find({
+      _id: { $ne: id },
+      category: currentProduct.category,
+      bookCategory: currentProduct.bookCategory,
+    }).limit(4);
+
+    res.status(200).json({
+      success: true,
+      recommendations,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

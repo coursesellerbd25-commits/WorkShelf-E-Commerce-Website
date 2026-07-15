@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -6,8 +7,21 @@ import Footer from '../components/Footer';
 import ProductGallery from '../components/ProductGallery';
 import ProductInfo from '../components/ProductInfo';
 import RelatedProducts from '../components/RelatedProducts';
+import ProductCard2 from '../components/ProductCard2';
+
+import { getRecommendations } from '../services/recommendationService';
+import type { Product } from '../types/product';
 
 const ProductDetailsPage = () => {
+  const { id } = useParams();
+  const {
+    data: recommendations = [],
+    isLoading,
+  } = useQuery<Product[]>({
+    queryKey: ['recommendations', id],
+    queryFn: () => getRecommendations(id!),
+  });
+  
   return (
     <>
       <Navbar />
@@ -35,6 +49,26 @@ const ProductDetailsPage = () => {
           </div>
 
         </div>
+        {recommendations.length > 0 && (
+        <section className="mt-16">
+          <h2 className="mb-6 text-3xl font-bold">
+            You May Also Like
+          </h2>
+
+          {isLoading ? (
+            <p>Loading recommendations...</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+              {recommendations.map((product) => (
+                <ProductCard2
+                  key={product._id}
+                  product={product}
+                />
+              ))}
+            </div>
+            )}
+        </section>
+        )}
       </main>
 
       <Footer />
