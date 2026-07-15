@@ -11,6 +11,7 @@ export const createProduct = async (req, res) => {
       rating,
       stock,
       category,
+      bookCategory,
       description,
     } = req.body;
 
@@ -59,9 +60,14 @@ export const createProduct = async (req, res) => {
       rating,
       stock,
       category,
+      bookCategory,
       description,
-
-      image: result.secure_url,
+      images: [
+        {
+          public_id: result.public_id,
+          url: result.secure_url,
+        },
+      ],
     });
 
     res.status(201).json({
@@ -96,6 +102,7 @@ export const getProducts = async (req, res) => {
     const {
       search,
       category,
+      bookCategory,
       minPrice,
       maxPrice,
       rating,
@@ -114,6 +121,11 @@ export const getProducts = async (req, res) => {
     // Category
     if (category) {
       filter.category = category;
+    }
+
+    // Book Category
+    if (bookCategory) {
+      filter.bookCategory = bookCategory;
     }
 
     // Price

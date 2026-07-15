@@ -6,6 +6,7 @@ const AdminAddProductPage = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('Books');
+  const [bookCategory, setBookCategory] = useState('Programming');
   const [stock, setStock] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const handleSubmit = async (
@@ -24,6 +25,7 @@ const AdminAddProductPage = () => {
     formData.append('description', description);
     formData.append('price', price);
     formData.append('category', category);
+    formData.append('bookCategory', bookCategory);
     formData.append('stock', stock);
     formData.append('image', image);
     const loadingToast = toast.loading('Uploading product...');
@@ -134,6 +136,29 @@ const AdminAddProductPage = () => {
               <option>Electronics</option>
             </select>
           </div>
+
+          {category === 'Books' && (
+            <div>
+              <label className="mb-2 block font-medium">
+                Book Category
+              </label>
+
+              <select
+                value={bookCategory}
+                onChange={(e) => setBookCategory(e.target.value)}
+                className="w-full rounded-xl border p-3 outline-none focus:border-blue-600"
+              >
+              <option>Programming</option>
+              <option>Business</option>
+              <option>Self Development</option>
+              <option>History</option>
+              <option>Science</option>
+              <option>Biography</option>
+              <option>Fiction</option>
+              <option>Non-Fiction</option>
+            </select>
+          </div>
+          )}
 
           {/* Stock */}
           <div>

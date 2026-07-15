@@ -42,6 +42,11 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
 
+    bookCategory: {
+      type: String,
+      default: '',
+    },
+
     description: {
       type: String,
       required: [true, 'Description is required'],
