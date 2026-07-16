@@ -17,6 +17,7 @@ import AdminProductsPage from './pages/AdminProductsPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import AdminAddProductPage from './pages/AdminAddProductPage';
+import ProfilePage from './pages/ProfilePage';
 
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -55,7 +56,7 @@ function App() {
 
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
-
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/addresses" element={<AddressPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/order-success" element={<OrderSuccessPage />} />

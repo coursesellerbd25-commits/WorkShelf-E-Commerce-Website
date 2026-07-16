@@ -26,6 +26,26 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
 
+    companyName: {
+      type: String,
+      default: '',
+    },
+
+    businessType: {
+      type: String,
+      default: '',
+    },
+
+    companyWebsite: {
+      type: String,
+      default: '',
+    },
+
+    companyPhone: {
+      type: String,
+      default: '',
+    },
+
     role: {
       type: String,
       enum: ['customer', 'admin'],

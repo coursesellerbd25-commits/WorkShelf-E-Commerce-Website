@@ -13,7 +13,7 @@ const generateToken = (userId) => {
 export const register = async (req, res) => {
   try {
     // 1. Receive request data
-    const { name, email, password } = req.body;
+    const { name, email, password, companyName, businessType, companyWebsite, companyPhone, } = req.body;
 
     // 2. Validate input
     if (!name || !email || !password) {
@@ -39,6 +39,10 @@ export const register = async (req, res) => {
       name,
       email,
       password,
+      companyName,
+      businessType,
+      companyWebsite,
+      companyPhone,
     });
 
     // 5. Generate JWT
