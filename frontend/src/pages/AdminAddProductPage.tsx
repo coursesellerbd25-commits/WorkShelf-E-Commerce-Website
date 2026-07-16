@@ -6,6 +6,7 @@ const AdminAddProductPage = () => {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('Books');
+  const [bulkAvailable, setBulkAvailable] = useState(false);
   const [bookCategory, setBookCategory] = useState('Programming');
   const [author, setAuthor] = useState('');
   const [publisher, setPublisher] = useState('');
@@ -28,6 +29,7 @@ const AdminAddProductPage = () => {
     formData.append('description', description);
     formData.append('price', price);
     formData.append('category', category);
+    formData.append('bulkAvailable', String(bulkAvailable));
     formData.append('bookCategory', bookCategory);
     formData.append('author', author);
     formData.append('publisher', publisher);
@@ -225,6 +227,24 @@ const AdminAddProductPage = () => {
               placeholder="50"
               className="w-full rounded-xl border p-3 outline-none focus:border-blue-600"
             />
+          </div>
+
+          {/* Bulk Orders */}
+          <div>
+            <label className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={bulkAvailable}
+                onChange={(e) =>
+                  setBulkAvailable(e.target.checked)
+                }
+                className="h-5 w-5"
+              />
+
+              <span className="font-medium">
+                Available for Bulk Orders
+              </span>
+            </label>
           </div>
 
           {/* Image */}

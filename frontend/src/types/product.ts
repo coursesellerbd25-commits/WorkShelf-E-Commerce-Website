@@ -7,4 +7,6 @@ export type Product = {
   category: string;
   description: string;
   images?: string[];
+
+  bulkAvailable: boolean;
 };

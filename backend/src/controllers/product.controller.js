@@ -16,6 +16,7 @@ export const createProduct = async (req, res) => {
       publisher,
       pages,
       description,
+      bulkAvailable,
     } = req.body;
 
     // Validate required fields
@@ -68,6 +69,7 @@ export const createProduct = async (req, res) => {
       publisher,
       pages,
       description,
+      bulkAvailable,
       images: [
         {
           public_id: result.public_id,

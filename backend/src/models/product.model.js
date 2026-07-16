@@ -42,6 +42,11 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
 
+    bulkAvailable: {
+      type: Boolean,
+      default: false,
+    },
+
     bookCategory: {
       type: String,
       default: '',

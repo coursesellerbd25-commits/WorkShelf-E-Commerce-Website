@@ -12,6 +12,7 @@ import RecentlyViewedBooks from '../components/RecentlyViewedBooks';
 
 import { getRecommendations } from '../services/recommendationService';
 import type { Product } from '../types/product';
+import { getProductById } from '../services/productService';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
@@ -22,6 +23,18 @@ const ProductDetailsPage = () => {
     queryKey: ['recommendations', id],
     queryFn: () => getRecommendations(id!),
   });
+
+  const {
+    data: product,
+  } = useQuery<Product>({
+    queryKey: ['product', id],
+    queryFn: () => getProductById(id!),
+  });
+
+  if (!product) {
+    return <p>Loading...</p>;
+  }
+
   
   return (
     <>
@@ -40,8 +53,8 @@ const ProductDetailsPage = () => {
           <div className="mt-8 grid gap-16 lg:grid-cols-2">
 
             <ProductGallery />
-
-            <ProductInfo />
+            
+            <ProductInfo product={product} />
 
           </div>
 
