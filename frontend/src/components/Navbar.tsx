@@ -5,20 +5,23 @@ import {
 } from 'react-icons/fi';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FiMoon, FiSun } from 'react-icons/fi';
+import { useTheme } from '../context/ThemeContext';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm transition-colors dark:bg-slate-900">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-8">
         {/* Logo */}
-        <h1 className="text-[24px] font-bold text-slate-900 whitespace-nowrap">
+        <h1 className="text-[24px] font-bold text-slate-900 dark:text-white whitespace-nowrap">
           WorkShelf
         </h1>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="rounded-md p-2 text-slate-700 lg:hidden"
+          className="rounded-md p-2 text-slate-700 dark:text-white lg:hidden"
         >
         {menuOpen ? (
           <FiX size={24} />
@@ -35,7 +38,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search books, office supplies..."
-              className="h-11 w-full rounded-full border border-gray-200 bg-gray-50 pl-12 pr-4 text-[15px] placeholder:text-gray-400 outline-none transition focus:border-blue-500 focus:bg-white"
+              className="h-11 w-full rounded-full border border-gray-200 bg-gray-50 text-slate-900  pl-12 pr-4 text-[15px] placeholder:text-gray-400 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-400 outline-none transition focus:border-blue-500 focus:bg-white"
             />
           </div>
         </div>
@@ -44,21 +47,21 @@ const Navbar = () => {
         <nav className="hidden lg:flex items-center gap-10">
           <Link
             to="/products"
-            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 transition hover:text-blue-600"
           >
           Books
           </Link>
 
           <a
             href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 hover:text-blue-600 transition"
           >
             Office
           </a>
 
           <a
             href="#"
-            className="text-[16px] font-medium text-slate-900 hover:text-blue-600 transition"
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 hover:text-blue-600 transition"
           >
             Business
           </a>
@@ -68,30 +71,37 @@ const Navbar = () => {
         <div className="ml-12 hidden lg:flex items-center gap-8">
           <Link
             to="/wishlist"
-            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 transition hover:text-blue-600"
           >
             Wishlist
           </Link>
 
           <Link 
             to="/cart" 
-            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600" > 
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 transition hover:text-blue-600" > 
               Cart 
           </Link>
 
           <Link
             to="/addresses"
-            className="text-[16px] font-medium text-slate-900 transition hover:text-blue-600"
+            className="text-[16px] font-medium text-slate-900 dark:text-slate-100 transition hover:text-blue-600"
           >
             Profile
           </Link>
         </div>
+
+        <button
+          onClick={toggleTheme}
+          className="rounded-full border p-2 transition hover:bg-slate-100 dark:hover:bg-slate-700"
+        >
+          {theme === 'light' ? <FiMoon /> : <FiSun />}
+        </button>
       </div>
 
         {/* Mobile Menu */}
         {
           menuOpen && (
-            <div className="border-t bg-white lg:hidden">
+            <div className="border-t bg-white dark:bg-slate-900 lg:hidden">
               <nav className="flex flex-col p-4">
                 <Link to="/products" className="py-3">Books</Link>
                 <a className="py-3">Office</a>
@@ -109,7 +119,7 @@ const Navbar = () => {
           {/* Mobile Search */}
           <div className="border-t border-gray-200 px-4 py-3 lg:hidden">
             <div className="relative">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 -translate-y-1/2 text-gray-400" />
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
 
               <input
                 type="text"
