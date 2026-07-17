@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
+import { HelmetProvider } from 'react-helmet-async';
 
 import './index.css';
 import App from './App';
@@ -17,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
+          <HelmetProvider>
       <BrowserRouter>
         <Toaster
           position="top-right"
@@ -24,6 +26,7 @@ createRoot(document.getElementById('root')!).render(
         />
         <App />
       </BrowserRouter>
+      </HelmetProvider>
       </ThemeProvider>
       </QueryClientProvider>
     </Provider>

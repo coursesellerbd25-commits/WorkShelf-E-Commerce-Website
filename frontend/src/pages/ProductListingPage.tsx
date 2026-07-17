@@ -9,6 +9,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getProducts } from '../services/productService';
 import { useEffect } from 'react';
 import { socket } from '../lib/socket';
+import { Helmet } from 'react-helmet-async';
 
 export type Product = {
   _id: string;
@@ -55,6 +56,14 @@ const ProductListingPage = () => {
 
   return (
     <>
+    <Helmet>
+  <title>Books | WorkShelf</title>
+
+  <meta
+    name="description"
+    content="Browse our collection of books."
+  />
+</Helmet>
       <Navbar />
 
       <main className="min-h-screen bg-slate-50">
