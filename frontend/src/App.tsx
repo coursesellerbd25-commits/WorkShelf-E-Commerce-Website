@@ -10,6 +10,7 @@ import WishlistPage from './pages/WishlistPage';
 import AddressPage from './pages/AddressPage';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderSuccessPage from './pages/OrderSuccessPage';
+import AdminReportsPage from './pages/AdminReportsPage';
 
 import AdminLayout from './layouts/AdminLayout';
 import AdminDashboardPage from './pages/AdminDashboardPage';
@@ -66,6 +67,7 @@ function App() {
 
           <Route path="products" element={<AdminProductsPage />} />
           <Route path="orders" element={<AdminOrdersPage />} />
+          <Route path="reports" element={<AdminReportsPage />} />
           <Route path="/admin/customers" element={<AdminUsersPage />} />
           <Route path="/admin/products/new" element={<AdminAddProductPage />} />
         </Route>

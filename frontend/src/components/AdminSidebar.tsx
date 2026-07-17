@@ -90,6 +90,14 @@ const AdminSidebar = ({
         </NavLink>
 
         <NavLink
+          to="/admin/reports"
+          onClick={closeSidebar}
+          className={navLinkClass}
+        >
+          Reports
+        </NavLink>
+
+        <NavLink
           to="/admin/settings"
           onClick={closeSidebar}
           className={navLinkClass}
