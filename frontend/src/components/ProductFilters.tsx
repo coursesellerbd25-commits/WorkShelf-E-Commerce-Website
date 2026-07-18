@@ -1,13 +1,20 @@
 import { FiFilter } from 'react-icons/fi';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
+import { useState } from "react";
+import FilterDrawer from "./FilterDrawer";
 
 const ProductFilters = () => {
+  const [drawerOpen, setDrawerOpen] =
+    useState(false);
+
   return (
     <div className="mt-6 space-y-4">
 
       {/* Filter Buttons */}
       <div className="grid grid-cols-2 gap-3">
-        <button className="flex h-11 items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white text-sm font-medium shadow-sm transition hover:bg-gray-50">
+        <button
+          onClick={() => setDrawerOpen(true)}
+          className="flex h-11 items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white text-sm font-medium shadow-sm transition hover:bg-gray-50">
           <FiFilter />
           Filter
         </button>
@@ -17,6 +24,11 @@ const ProductFilters = () => {
           Sort
         </button>
       </div>
+
+      <FilterDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+      />
 
       {/* Book Category */}
       <select
